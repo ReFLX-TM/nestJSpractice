@@ -1,10 +1,17 @@
 import { Injectable } from '@nestjs/common';
 
+export interface User {
+    name: String,
+    age: Number
+}
 @Injectable()
 export class TasksService {
 
-    getTasks() {
-        return ["Task 1", "Task 2", "Task 3"]
+    getTasks(): User {
+        return {
+            name: "John",
+            age: 12
+        }
     }
 
     createTasks() {
