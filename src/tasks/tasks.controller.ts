@@ -1,33 +1,33 @@
 import { Controller, Delete, Get, Patch, Post, Put } from "@nestjs/common";
 import { TasksService } from "./tasks.service";
 
-@Controller('tasks')
+@Controller('/tasks')
 export class TaskController {
 
     constructor(private tasksService:TasksService) {}
 
-    @Get('/')
+    @Get()
     getAllTasks() {
         return this.tasksService.getTasks()
     }
 
-    @Post('/')
+    @Post()
     createTasks() {
-        return "Creando tareas"
+        return this.tasksService.createTasks()
     }
 
-    @Put('/')
+    @Put()
     updateTasks() {
-        return "Actualizando tareas"
+        return this.tasksService.updateTasks()
     }
 
-    @Delete('/')
+    @Delete()
     deleteTasks() {
-        return "Eliminando tareas"
+        return this.tasksService.deleteTasks()
     }
 
-    @Patch('/')
+    @Patch()
     updateTasksStatus() {
-        return "Actualizando el estado de una tarea"
+        return this.tasksService.updateTasksStatus()
     }
 }
