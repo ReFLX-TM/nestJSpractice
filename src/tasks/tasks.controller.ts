@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, P
 import { TasksService } from "./tasks.service";
 import { CreateTaskDto } from "./dto/createTask.dto";
 import { UpdateTaskDto } from "./dto/updateTask.dto";
+import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 
 @Controller('/tasks')
 export class TaskController {
@@ -9,11 +10,15 @@ export class TaskController {
     constructor(private tasksService:TasksService) {}
 
     @Get()
+    @ApiOperation({ summary: 'Obtener todas las tareas' })
+    @ApiResponse({ status: 200, description: 'Devuelve todas las tareas' })
+    @ApiResponse({ status: 401, description: 'No se ha proporcionado un token' })
     getAllTasks() {
         return this.tasksService.getTasks()
     }
 
     @Get("/:id")
+    @ApiOperation({ summary: 'Obtener una tarea por su id' })
     getTask(@Param('id') id: string) {
         const taskFound = this.tasksService.getTask(parseInt(id))
 
